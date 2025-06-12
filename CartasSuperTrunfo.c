@@ -15,12 +15,13 @@ int main() {
     char estado1;
     char codigoDaCarta1[20];
     char nomeDaCidade1[20];
-    int populacao1;
+    unsigned long int populacao1;
     float area1;
     float pib1;
     int pontosTuristicos1;
     float densidade_populacional1;
     float pib_per_capita1;
+    float superPoder1;
 
     // Identificação da primeira carta
     printf("-----Esta é a carta 1-------\n");
@@ -80,12 +81,14 @@ int main() {
     char estado2;
     char codigoDaCarta2[20];
     char nomeDaCidade2[20];
-    int populacao2;
+    unsigned long int populacao2;
     float area2;
     float pib2;
     int pontosTuristicos2;
     float densidade_populacional2;
     float pib_per_capita2;
+    float superPoder2;
+    
 
     // Identificação da segunda carta
     printf("-----Esta é a carta 2-------\n");
@@ -136,6 +139,50 @@ int main() {
     printf("Número de Pontos Turísticos: %d\n", pontosTuristicos2);
     printf("Densidade Populacional: %.2f hab/km²\n", densidade_populacional2);
     printf("PIB per Capita: %.2f reais\n", pib_per_capita2);
+
+    //Verifica qual atributo tem maior valor
+    int resultadoPopulacao = populacao1 > populacao2;
+    int resultadoArea = area1 > area2;
+    int resultadoPib = pib1 > pib2;
+    int resultadoPontosTuristicos = pontosTuristicos1 > pontosTuristicos2;
+    int resultadoPibPerCapita = pib_per_capita1 > pib_per_capita2;
+
+    //Calcula o inverso da densidade populacional
+    int resultadoDensidadeInvertida = (1.0 / densidade_populacional1) > (1.0 / densidade_populacional2);
+
+    //Calcula o super poder
+    //Carta 1h
+
+    superPoder1 = 
+        (float)populacao1 + 
+        (float)area1 + 
+        (float)pib1 + 
+        (float)pontosTuristicos1 + 
+        (float)pib_per_capita1 + 
+        (1.0 / (float)densidade_populacional1);
+
+    //Carta 2
+    superPoder2 = 
+        (float)populacao2 + 
+        (float)area2 + 
+        (float)pib2 + 
+        (float)pontosTuristicos2 + 
+        (float)pib_per_capita2 + 
+        (1.0 / (float)densidade_populacional2);
+
+    //Verifica quem tem mais super poder
+    int resultadoSuperPoder = superPoder1 > superPoder2;
+
+    // Exibição dos dados da comparação de atributo
+    printf("-----Comparação de cartas-----\n");
+    printf("População: carta %d venceu (%d)\n", 2 - resultadoPopulacao, resultadoPopulacao);
+    printf("Área: Carta %d venceu (%d)\n", 2 - resultadoArea, resultadoArea);
+    printf("PIB: Carta %d venceu (%d)\n", 2 - resultadoPib, resultadoPib);
+    printf("Pontos Turíscos: Carta %d venceu (%d)\n", 2 - resultadoPontosTuristicos, resultadoPontosTuristicos);
+    printf("Densidade populacional: carta %d venceu (%d)\n", 2 - resultadoDensidadeInvertida, resultadoDensidadeInvertida);
+    printf("PIB per Capita: Carta %d venceu (%d)\n", 2 - resultadoPibPerCapita, resultadoPibPerCapita);
+    printf("Super Poder: Carta %d venceu (%d)\n", 2 - resultadoSuperPoder, resultadoSuperPoder);
+
 
 
     return 0;
